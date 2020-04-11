@@ -1,10 +1,15 @@
 import React from "react";
+import Book from "../Book/Book.js";
 
-function Results() {
+function Results({ books }) {
 
   return (
     <div>
-
+      {books.map( book => {
+        return (
+          <Book data={book}/>
+        );
+      })}
     </div>
   );
 }
