@@ -6,9 +6,9 @@ function Results(props) {
 
   return (
     <div>
-      {props.books.map( (book, ind) => {
+      {props.books.map( (book) => {
         return (
-          <Book book={book} handleView={props.handleView} handleSave={props.handleSave} key={ind}/>
+          <Book book={book} handleView={props.handleView} handleSave={props.handleSave} key={book.id}/>
         );
       })}
     </div>

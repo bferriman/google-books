@@ -5,7 +5,7 @@ function Book(props) {
   let volume = props.book.volumeInfo;
 
   let styles = {
-    backgroundImage: "url(" + volume.imageLinks.thumbnail + ")",
+    backgroundImage: (volume.imageLinks) ? "url(" + volume.imageLinks.thumbnail + ")" : "url(images/no_image.png)",
     backgroundSize: "cover",
     height: "150px",
     maxWidth: "120px"
