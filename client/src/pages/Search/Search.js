@@ -8,6 +8,7 @@ import API from "../../utils/API";
 function Search() {
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
 
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
@@ -19,9 +20,18 @@ function Search() {
       API.searchBooks(searchTerm)
       .then( res => {
         console.log(res);
+        setSearchResults(res.data);
       });
     }
   }, [debouncedSearchTerm]);
+
+  const handleViewButton = event => {
+    console.log("view button clicked");
+  };
+
+  const handleSaveButton = event => {
+    console.log("save button clicked");
+  };
 
   const handleInputChange = event => {
     setSearchTerm(event.target.value);
@@ -35,7 +45,7 @@ function Search() {
     <>
       <Header />
       <SearchForm searchTerm={searchTerm} onChange={handleInputChange} onClick={handleFormSubmit}/>
-      <Results books={[]}/>
+      <Results books={searchResults} handleView={handleViewButton} handleSave={handleSaveButton}/>
     </>
   );
 }

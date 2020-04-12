@@ -1,13 +1,14 @@
 import React from "react";
 import Book from "../Book/Book.js";
+import { PromiseProvider } from "mongoose";
 
-function Results({ books }) {
+function Results(props) {
 
   return (
     <div>
-      {books.map( book => {
+      {props.books.map( (book, ind) => {
         return (
-          <Book data={book}/>
+          <Book book={book} handleView={props.handleView} handleSave={props.handleSave} key={ind}/>
         );
       })}
     </div>
