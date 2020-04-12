@@ -29,8 +29,27 @@ function Search() {
     console.log("view button clicked");
   };
 
-  const handleSaveButton = event => {
-    console.log("save button clicked");
+  const handleSaveButton = param => {
+    const index = searchResults.findIndex( book => {
+      return book.id === param;
+    });
+    const book = searchResults[index];
+  
+    API.saveBook({
+      id: book.id,
+      title: book.volumeInfo.title,
+      authors: book.volumeInfo.authors,
+      description: book.volumeInfo.description,
+      imageURL: (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : "",
+      link: book.volumeInfo.infoLink
+    })
+    .then(res => {
+      const books = searchResults.filter( book => {
+        return book.id !== param;
+      });
+      setSearchResults(books);  
+    })
+    .catch(err => console.log(err));
   };
 
   const handleInputChange = event => {

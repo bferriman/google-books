@@ -18,7 +18,7 @@ function Book(props) {
       <div className="bookImage" style={styles}></div>
       <div>{volume.description}</div>
       <button onClick={() => window.open(volume.infoLink)}>View</button>
-      <button onClick={props.handleSave}>Save</button>
+      <button onClick={() => props.handleSave(props.book.id)}>Save</button>
     </div>
   );
 }
