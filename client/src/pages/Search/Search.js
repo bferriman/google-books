@@ -34,8 +34,8 @@ function Search() {
   return (
     <>
       <Header />
-      <SearchForm />
-      <Results />
+      <SearchForm searchTerm={searchTerm} onChange={handleInputChange} onClick={handleFormSubmit}/>
+      <Results books={[]}/>
     </>
   );
 }
