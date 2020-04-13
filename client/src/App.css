@@ -1,10 +1,13 @@
-.navbar {
-  background-color: black;
-  color: white;
-}
-
 .banner {
-  height: 250px;
+  height: 180px;
   background-image:url("/images/book-banner.jpg");
   background-size:cover;
+}
+
+#nav-toggle-state {
+  display: none;
+}
+
+#nav-toggle-state:checked ~ .navbar-menu {
+  display: block;
 }
