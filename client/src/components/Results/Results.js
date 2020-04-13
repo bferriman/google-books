@@ -7,8 +7,10 @@ function Results(props) {
     <div>
       {props.books.map( book => {
         return (
-          <Book book={book} handleSave={props.handleSave} key={book.id}/>
-        );
+          <Book book={book} key={book.id}>
+            <button onClick={() => props.handleSave(book.id)}>Save</button>
+          </Book>
+        )
       })}
     </div>
   );

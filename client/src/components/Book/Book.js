@@ -18,7 +18,7 @@ function Book(props) {
       <div className="bookImage" style={styles}></div>
       <div>{book.description}</div>
       <button onClick={() => window.open(book.infoLink)}>View</button>
-      <button onClick={() => props.handleSave(book.id)}>Save</button>
+      {props.children}
     </div>
   );
 }
