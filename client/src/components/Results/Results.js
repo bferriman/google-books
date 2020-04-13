@@ -4,15 +4,17 @@ import Book from "../Book/Book.js";
 function Results(props) {
 
   return (
-    <div>
-      {props.books.map( book => {
-        return (
-          <Book book={book} key={book.id}>
-            <button onClick={() => props.handleSave(book.id)}>Save</button>
-          </Book>
-        )
-      })}
-    </div>
+    <section className="section">
+      <div className="container">
+        {props.books.map( book => {
+          return (
+            <Book book={book} key={book.id}>
+              <button className="button is-info" onClick={() => props.handleSave(book.id)}>Save</button>
+            </Book>
+          )
+        })}
+      </div>
+    </section>
   );
 }
 
