@@ -20,14 +20,19 @@ function Search() {
       API.searchBooks(searchTerm)
       .then( res => {
         console.log(res);
-        setSearchResults(res.data);
+        setSearchResults(res.data.map( book => {
+          return {
+            id: book.id,
+            title: book.volumeInfo.title,
+            authors: book.volumeInfo.authors,
+            description: book.volumeInfo.description,
+            imageURL: (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : "images/no_image.png",
+            link: book.volumeInfo.infoLink
+          }
+        }));
       });
     }
   }, [debouncedSearchTerm]);
-
-  const handleViewButton = event => {
-    console.log("view button clicked");
-  };
 
   const handleSaveButton = param => {
     const index = searchResults.findIndex( book => {
@@ -35,14 +40,7 @@ function Search() {
     });
     const book = searchResults[index];
   
-    API.saveBook({
-      id: book.id,
-      title: book.volumeInfo.title,
-      authors: book.volumeInfo.authors,
-      description: book.volumeInfo.description,
-      imageURL: (book.volumeInfo.imageLinks) ? book.volumeInfo.imageLinks.thumbnail : "",
-      link: book.volumeInfo.infoLink
-    })
+    API.saveBook(book)
     .then(res => {
       const books = searchResults.filter( book => {
         return book.id !== param;
@@ -64,7 +62,7 @@ function Search() {
     <>
       <Header />
       <SearchForm searchTerm={searchTerm} onChange={handleInputChange} onClick={handleFormSubmit}/>
-      <Results books={searchResults} handleView={handleViewButton} handleSave={handleSaveButton}/>
+      <Results books={searchResults} handleSave={handleSaveButton}/>
     </>
   );
 }
