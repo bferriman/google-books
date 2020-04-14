@@ -31,7 +31,7 @@ function Book(props) {
           </div>
           <div className="level is-mobile">
             <div className="level-left">
-              <button className="button is-light" style={styles} onClick={() => window.open(book.infoLink)}>View</button>
+              <button className="button" style={styles} onClick={() => window.open(book.link)}>View</button>
               {props.children}
             </div>
           </div>
